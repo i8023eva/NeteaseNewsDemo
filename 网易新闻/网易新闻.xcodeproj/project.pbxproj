@@ -13,6 +13,12 @@
 		14697A6820BABBD500FA5071 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14697A6720BABBD500FA5071 /* Assets.xcassets */; };
 		14697A6B20BABBD500FA5071 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14697A6920BABBD500FA5071 /* LaunchScreen.storyboard */; };
 		14697A6E20BABBD500FA5071 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14697A6D20BABBD500FA5071 /* main.m */; };
+		149D7D5F20BAE2C000D155F5 /* HeadLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149D7D5E20BAE2C000D155F5 /* HeadLineViewController.m */; };
+		149D7D6220BAE2DB00D155F5 /* HotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149D7D6120BAE2DB00D155F5 /* HotViewController.m */; };
+		149D7D6520BAE2EA00D155F5 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149D7D6420BAE2EA00D155F5 /* VideoViewController.m */; };
+		149D7D6820BAE31E00D155F5 /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149D7D6720BAE31E00D155F5 /* SocialViewController.m */; };
+		149D7D6B20BAE33200D155F5 /* ReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149D7D6A20BAE33200D155F5 /* ReadViewController.m */; };
+		149D7D6E20BAE34300D155F5 /* ScienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149D7D6D20BAE34300D155F5 /* ScienceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +32,18 @@
 		14697A6A20BABBD500FA5071 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14697A6C20BABBD500FA5071 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14697A6D20BABBD500FA5071 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		149D7D5D20BAE2C000D155F5 /* HeadLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeadLineViewController.h; sourceTree = "<group>"; };
+		149D7D5E20BAE2C000D155F5 /* HeadLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeadLineViewController.m; sourceTree = "<group>"; };
+		149D7D6020BAE2DB00D155F5 /* HotViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotViewController.h; sourceTree = "<group>"; };
+		149D7D6120BAE2DB00D155F5 /* HotViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotViewController.m; sourceTree = "<group>"; };
+		149D7D6320BAE2EA00D155F5 /* VideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
+		149D7D6420BAE2EA00D155F5 /* VideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
+		149D7D6620BAE31E00D155F5 /* SocialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocialViewController.h; sourceTree = "<group>"; };
+		149D7D6720BAE31E00D155F5 /* SocialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocialViewController.m; sourceTree = "<group>"; };
+		149D7D6920BAE33200D155F5 /* ReadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReadViewController.h; sourceTree = "<group>"; };
+		149D7D6A20BAE33200D155F5 /* ReadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReadViewController.m; sourceTree = "<group>"; };
+		149D7D6C20BAE34300D155F5 /* ScienceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScienceViewController.h; sourceTree = "<group>"; };
+		149D7D6D20BAE34300D155F5 /* ScienceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScienceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +76,7 @@
 		14697A5D20BABBD500FA5071 /* 网易新闻 */ = {
 			isa = PBXGroup;
 			children = (
+				149D7D5C20BAE25200D155F5 /* ChildVC */,
 				14697A5E20BABBD500FA5071 /* AppDelegate.h */,
 				14697A5F20BABBD500FA5071 /* AppDelegate.m */,
 				14697A6120BABBD500FA5071 /* ViewController.h */,
@@ -69,6 +88,25 @@
 				14697A6D20BABBD500FA5071 /* main.m */,
 			);
 			path = "网易新闻";
+			sourceTree = "<group>";
+		};
+		149D7D5C20BAE25200D155F5 /* ChildVC */ = {
+			isa = PBXGroup;
+			children = (
+				149D7D5D20BAE2C000D155F5 /* HeadLineViewController.h */,
+				149D7D5E20BAE2C000D155F5 /* HeadLineViewController.m */,
+				149D7D6020BAE2DB00D155F5 /* HotViewController.h */,
+				149D7D6120BAE2DB00D155F5 /* HotViewController.m */,
+				149D7D6320BAE2EA00D155F5 /* VideoViewController.h */,
+				149D7D6420BAE2EA00D155F5 /* VideoViewController.m */,
+				149D7D6620BAE31E00D155F5 /* SocialViewController.h */,
+				149D7D6720BAE31E00D155F5 /* SocialViewController.m */,
+				149D7D6920BAE33200D155F5 /* ReadViewController.h */,
+				149D7D6A20BAE33200D155F5 /* ReadViewController.m */,
+				149D7D6C20BAE34300D155F5 /* ScienceViewController.h */,
+				149D7D6D20BAE34300D155F5 /* ScienceViewController.m */,
+			);
+			path = ChildVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +179,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				149D7D5F20BAE2C000D155F5 /* HeadLineViewController.m in Sources */,
 				14697A6320BABBD500FA5071 /* ViewController.m in Sources */,
+				149D7D6B20BAE33200D155F5 /* ReadViewController.m in Sources */,
+				149D7D6520BAE2EA00D155F5 /* VideoViewController.m in Sources */,
+				149D7D6E20BAE34300D155F5 /* ScienceViewController.m in Sources */,
+				149D7D6820BAE31E00D155F5 /* SocialViewController.m in Sources */,
+				149D7D6220BAE2DB00D155F5 /* HotViewController.m in Sources */,
 				14697A6E20BABBD500FA5071 /* main.m in Sources */,
 				14697A6020BABBD500FA5071 /* AppDelegate.m in Sources */,
 			);
