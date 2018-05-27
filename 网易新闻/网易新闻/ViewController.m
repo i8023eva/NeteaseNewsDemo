@@ -20,6 +20,7 @@
 
 @property (nonatomic, weak) UIScrollView *titleScrollView;
 @property (nonatomic, weak) UIScrollView *contentScrollView;
+@property (nonatomic, weak) UIButton *selectedButton;
 @end
 
 @implementation ViewController
@@ -32,13 +33,41 @@
     [self setupScrollView];
 //    添加子控制器
     [self setupChildViewController];
-//    设置标题
+//    设置标题按钮
     [self setupTitle];
 }
 
 
 /**
- titleScrollView滚动 隐藏滚动条 禁用回弹
+ 切换按钮标题颜色
+
+ @param button <#button description#>
+ */
+- (void)changeButtonStatus:(UIButton *)button {
+    [_selectedButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    _selectedButton = button;
+}
+
+/**
+ 添加子控制器
+ 切换子控制器
+
+ @param button <#button description#>
+ */
+- (void)titltClick:(UIButton *)button {
+    [self changeButtonStatus:button];
+    
+    NSInteger tag = button.tag;
+    UIViewController *vc = self.childViewControllers[tag];
+    vc.view.frame = CGRectMake(screenWidth * tag, 0, screenWidth, self.contentScrollView.bounds.size.height);
+    [self.contentScrollView addSubview:vc.view];
+    
+    self.contentScrollView.contentOffset = CGPointMake(screenWidth * tag, 0);
+}
+
+/**
+ titleScrollView滚动
  button的 title ->VC 的 title
  */
 - (void)setupTitle {
@@ -49,15 +78,20 @@
     for (int i = 0; i < count; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(btnW * i, 0, btnW, btnH);
+        button.tag = i;
         UIViewController *vc = self.childViewControllers[i];
         [button setTitle:vc.title forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.titleScrollView addSubview:button];
+        
+        [button addTarget:self action:@selector(titltClick:) forControlEvents:UIControlEventTouchUpInside];
+        if (i == 0) {
+            [self titltClick:button];
+        }
     }
     
     self.titleScrollView.contentSize = CGSizeMake(btnW * count, 0);
-    self.titleScrollView.showsHorizontalScrollIndicator = NO;
-    self.titleScrollView.bounces = NO;
+    self.contentScrollView.contentSize = CGSizeMake(screenWidth * count, 0);
 }
 
 - (void)setupChildViewController {
@@ -91,7 +125,10 @@
     UIScrollView *titleScrollView = [[UIScrollView alloc] init];
     CGFloat titleY = self.navigationController.navigationBarHidden ? 20 : 64;
     titleScrollView.frame = CGRectMake(0, titleY, screenWidth, 44);
-    titleScrollView.backgroundColor = [UIColor orangeColor];
+//    titleScrollView.backgroundColor = [UIColor orangeColor];
+//    隐藏滚动条 禁用回弹
+    titleScrollView.showsHorizontalScrollIndicator = NO;
+    titleScrollView.bounces = NO;
     [self.view addSubview:titleScrollView];
     _titleScrollView = titleScrollView;
     
@@ -99,6 +136,8 @@
     CGFloat contentY = CGRectGetMaxY(titleScrollView.frame);
     contentScrollView.frame = CGRectMake(0, contentY, screenWidth, screenHeight - contentY);
     contentScrollView.backgroundColor = [UIColor lightGrayColor];
+    contentScrollView.showsHorizontalScrollIndicator = NO;
+    contentScrollView.bounces = NO;
     [self.view addSubview:contentScrollView];
     _contentScrollView = contentScrollView;
 }
