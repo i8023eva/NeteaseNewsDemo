@@ -22,6 +22,8 @@
 @property (nonatomic, weak) UIScrollView *contentScrollView;
 @property (nonatomic, weak) UIButton *selectedButton;
 @property (nonatomic, strong) NSMutableArray<UIButton *> *button_Arr;
+
+@property (nonatomic, assign) BOOL isInitialize;
 @end
 
 @implementation ViewController
@@ -33,6 +35,22 @@
     return _button_Arr;
 }
 
+/**
+ viewDidLoad之后执行，self.childViewControllers有值
+ 这个方法多次执行 - dispatch_once 不行，考虑到页面跳转
+
+ @param animated <#animated description#>
+ */
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    if (_isInitialize == NO) {
+        [self setupTitleButton];
+        
+        _isInitialize = YES;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -41,10 +59,10 @@
     self.navigationItem.title = @"网易新闻";
 //    添加scrollView
     [self setupScrollView];
-//    添加子控制器
-    [self setupChildViewController];
+//    添加子控制器  子类创建方法
+//    [self setupChildViewController];
 //    设置标题按钮
-    [self setupTitleButton];
+//    [self setupTitleButton];
 }
 
 

@@ -19,6 +19,7 @@
 		149D7D6820BAE31E00D155F5 /* SocialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149D7D6720BAE31E00D155F5 /* SocialViewController.m */; };
 		149D7D6B20BAE33200D155F5 /* ReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149D7D6A20BAE33200D155F5 /* ReadViewController.m */; };
 		149D7D6E20BAE34300D155F5 /* ScienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 149D7D6D20BAE34300D155F5 /* ScienceViewController.m */; };
+		14B0538820BBB11100E42B6F /* NeteaseNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B0538720BBB11100E42B6F /* NeteaseNewsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		149D7D6A20BAE33200D155F5 /* ReadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReadViewController.m; sourceTree = "<group>"; };
 		149D7D6C20BAE34300D155F5 /* ScienceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScienceViewController.h; sourceTree = "<group>"; };
 		149D7D6D20BAE34300D155F5 /* ScienceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScienceViewController.m; sourceTree = "<group>"; };
+		14B0538620BBB11100E42B6F /* NeteaseNewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NeteaseNewsViewController.h; sourceTree = "<group>"; };
+		14B0538720BBB11100E42B6F /* NeteaseNewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NeteaseNewsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,8 @@
 				14697A5F20BABBD500FA5071 /* AppDelegate.m */,
 				14697A6120BABBD500FA5071 /* ViewController.h */,
 				14697A6220BABBD500FA5071 /* ViewController.m */,
+				14B0538620BBB11100E42B6F /* NeteaseNewsViewController.h */,
+				14B0538720BBB11100E42B6F /* NeteaseNewsViewController.m */,
 				14697A6420BABBD500FA5071 /* Main.storyboard */,
 				14697A6720BABBD500FA5071 /* Assets.xcassets */,
 				14697A6920BABBD500FA5071 /* LaunchScreen.storyboard */,
@@ -188,6 +193,7 @@
 				149D7D6220BAE2DB00D155F5 /* HotViewController.m in Sources */,
 				14697A6E20BABBD500FA5071 /* main.m in Sources */,
 				14697A6020BABBD500FA5071 /* AppDelegate.m in Sources */,
+				14B0538820BBB11100E42B6F /* NeteaseNewsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
