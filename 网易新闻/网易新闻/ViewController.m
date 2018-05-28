@@ -21,7 +21,7 @@
 @property (nonatomic, weak) UIScrollView *titleScrollView;
 @property (nonatomic, weak) UIScrollView *contentScrollView;
 @property (nonatomic, weak) UIButton *selectedButton;
-@property (nonatomic, strong) NSMutableArray *button_Arr;
+@property (nonatomic, strong) NSMutableArray<UIButton *> *button_Arr;
 @end
 
 @implementation ViewController
@@ -63,6 +63,37 @@
     
     UIButton *button = self.button_Arr[tag];
     [self changeButtonStatus:button];
+}
+
+/**
+ 滚动时字体缩放
+ 获取缩放按钮 - nextBtn数组越界
+ 不能通过 self.selectedButton.tag来判断下一个按钮， 往左滑是上一个按钮
+ 缩放比例多打印
+
+ @param scrollView <#scrollView description#>
+ */
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    CGPoint point = [scrollView.panGestureRecognizer translationInView:scrollView];
+//    NSLog(@"%f", point.x);
+//    UIButton *nextBtn = self.button_Arr[self.selectedButton.tag + 1];
+
+    NSInteger index = scrollView.contentOffset.x / screenWidth;//取整
+//    NSLog(@"%ld", index);
+    UIButton *leftBtn = self.button_Arr[index];
+    UIButton *rightBtn = nil;
+    if (index + 1 < self.button_Arr.count) {
+        rightBtn = self.button_Arr[index + 1];
+    }
+    
+    CGFloat scaleR = scrollView.contentOffset.x / screenWidth;//0 --
+//    NSLog(@"%f",scaleR);
+    scaleR -= index;
+    
+    CGFloat scaleL = 1 - scaleR;//取反
+    
+    leftBtn.transform = CGAffineTransformMakeScale(scaleL * 0.3 + 1, scaleL * 0.3 + 1);
+    rightBtn.transform = CGAffineTransformMakeScale(scaleR * 0.3 + 1, scaleR * 0.3 + 1);
 }
 #pragma mark -
 
@@ -107,12 +138,15 @@
 
 /**
  切换选中按钮标题颜色
+ 让选中的按钮放大，上一个按钮还原
 
  @param button <#button description#>
  */
 - (void)changeButtonStatus:(UIButton *)button {
+    _selectedButton.transform = CGAffineTransformIdentity;
     [_selectedButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    button.transform = CGAffineTransformMakeScale(1.3, 1.3);
     _selectedButton = button;
     
     [self setupButtonCenter:button];
