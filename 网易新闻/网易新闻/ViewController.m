@@ -53,8 +53,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    self.titleScrollView.contentInsetAdjustmentBehavior
+    // iOS7以后,导航控制器中scollView顶部会添加64的额外滚动区域
+    //    self.automaticallyAdjustsScrollViewInsets = NO;
+    //    self.titleScrollView.contentInsetAdjustmentBehavior
     
     self.navigationItem.title = @"网易新闻";
 //    添加scrollView
