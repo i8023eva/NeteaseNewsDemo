@@ -16,14 +16,22 @@
 
 #define screenWidth [UIScreen mainScreen].bounds.size.width
 #define screenHeight [UIScreen mainScreen].bounds.size.height
-@interface ViewController ()
+@interface ViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, weak) UIScrollView *titleScrollView;
 @property (nonatomic, weak) UIScrollView *contentScrollView;
 @property (nonatomic, weak) UIButton *selectedButton;
+@property (nonatomic, strong) NSMutableArray *button_Arr;
 @end
 
 @implementation ViewController
+
+- (NSMutableArray *)button_Arr {
+    if (_button_Arr == nil) {
+        _button_Arr = [NSMutableArray array];
+    }
+    return _button_Arr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,12 +42,45 @@
 //    添加子控制器
     [self setupChildViewController];
 //    设置标题按钮
-    [self setupTitle];
+    [self setupTitleButton];
 }
 
 
+#pragma mark - UIScrollViewDelegate
+
 /**
- 切换按钮标题颜色
+ 滚动完成添加子控制器[懒加载] 第一次滚动中不加载
+ 切换标题按钮 - 获取按钮 - scrollView 有多余的子控件 - 创建数组存储 button
+
+ @param scrollView <#scrollView description#>
+ */
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSInteger tag = scrollView.contentOffset.x / screenWidth;
+    [self addViewToScrollViewWithIndex:tag];
+    
+    UIButton *button = self.button_Arr[tag];
+    [self changeButtonStatus:button];
+}
+#pragma mark -
+
+
+/**
+ 添加子控制器 View
+ 重复添加 -
+
+ @param index <#index description#>
+ */
+- (void)addViewToScrollViewWithIndex:(NSInteger)index {
+    UIViewController *vc = self.childViewControllers[index];
+    if (vc.viewIfLoaded) {
+        return;
+    }
+    vc.view.frame = CGRectMake(screenWidth * index, 0, screenWidth, self.contentScrollView.bounds.size.height);
+    [self.contentScrollView addSubview:vc.view];
+}
+
+/**
+ 切换选中按钮标题颜色
 
  @param button <#button description#>
  */
@@ -50,7 +91,7 @@
 }
 
 /**
- 添加子控制器
+ 点击添加子控制器， 但滑动contentScrollView并不添加子控制器(+)
  切换子控制器
 
  @param button <#button description#>
@@ -59,9 +100,8 @@
     [self changeButtonStatus:button];
     
     NSInteger tag = button.tag;
-    UIViewController *vc = self.childViewControllers[tag];
-    vc.view.frame = CGRectMake(screenWidth * tag, 0, screenWidth, self.contentScrollView.bounds.size.height);
-    [self.contentScrollView addSubview:vc.view];
+    
+    [self addViewToScrollViewWithIndex:tag];
     
     self.contentScrollView.contentOffset = CGPointMake(screenWidth * tag, 0);
 }
@@ -70,7 +110,7 @@
  titleScrollView滚动
  button的 title ->VC 的 title
  */
-- (void)setupTitle {
+- (void)setupTitleButton {
     NSInteger count = self.childViewControllers.count;
     
     CGFloat btnW = 100;
@@ -85,6 +125,7 @@
         [self.titleScrollView addSubview:button];
         
         [button addTarget:self action:@selector(titltClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.button_Arr addObject:button];
         if (i == 0) {
             [self titltClick:button];
         }
@@ -108,7 +149,7 @@
     vc3.title = @"视频";
     [self addChildViewController:vc3];
     // 社会
-    ScienceViewController *vc4 = [[ScienceViewController alloc] init];
+    SocialViewController *vc4 = [[SocialViewController alloc] init];
     vc4.title = @"社会";
     [self addChildViewController:vc4];
     // 订阅
@@ -138,6 +179,8 @@
     contentScrollView.backgroundColor = [UIColor lightGrayColor];
     contentScrollView.showsHorizontalScrollIndicator = NO;
     contentScrollView.bounces = NO;
+    contentScrollView.pagingEnabled = YES;
+    contentScrollView.delegate = self;
     [self.view addSubview:contentScrollView];
     _contentScrollView = contentScrollView;
 }
