@@ -36,6 +36,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    self.titleScrollView.contentInsetAdjustmentBehavior
+    
     self.navigationItem.title = @"网易新闻";
 //    添加scrollView
     [self setupScrollView];
@@ -51,6 +53,7 @@
 /**
  滚动完成添加子控制器[懒加载] 第一次滚动中不加载
  切换标题按钮 - 获取按钮 - scrollView 有多余的子控件 - 创建数组存储 button
+ 标题按钮随内容居中 - changeButtonStatus
 
  @param scrollView <#scrollView description#>
  */
@@ -79,6 +82,29 @@
     [self.contentScrollView addSubview:vc.view];
 }
 
+
+/**
+ 设置标题按钮居中
+
+ @param button <#button description#>
+ */
+- (void)setupButtonCenter:(UIButton *)button {
+    CGFloat offsetX = button.center.x - screenWidth * 0.5;
+    //    NSLog(@"%f", offsetX);
+    /*
+     往右滑<0 && 左滑 > max 不能滑动
+     max -
+     */
+    if (offsetX < 0) {
+        offsetX = 0;
+    }
+    CGFloat maxOffsetX = self.titleScrollView.contentSize.width - screenWidth;
+    if (offsetX > maxOffsetX) {
+        offsetX = maxOffsetX;
+    }
+    [self.titleScrollView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+}
+
 /**
  切换选中按钮标题颜色
 
@@ -88,6 +114,8 @@
     [_selectedButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     _selectedButton = button;
+    
+    [self setupButtonCenter:button];
 }
 
 /**
