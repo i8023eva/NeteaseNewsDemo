@@ -70,6 +70,7 @@
  获取缩放按钮 - nextBtn数组越界
  不能通过 self.selectedButton.tag来判断下一个按钮， 往左滑是上一个按钮
  缩放比例多打印
+ 颜色渐变
 
  @param scrollView <#scrollView description#>
  */
@@ -79,7 +80,7 @@
 //    UIButton *nextBtn = self.button_Arr[self.selectedButton.tag + 1];
 
     NSInteger index = scrollView.contentOffset.x / screenWidth;//取整
-//    NSLog(@"%ld", index);
+//    NSLog(@"index - %ld", index);
     UIButton *leftBtn = self.button_Arr[index];
     UIButton *rightBtn = nil;
     if (index + 1 < self.button_Arr.count) {
@@ -87,13 +88,18 @@
     }
     
     CGFloat scaleR = scrollView.contentOffset.x / screenWidth;//0 --
-//    NSLog(@"%f",scaleR);
+//    NSLog(@"scaleR - %f",scaleR);
     scaleR -= index;
     
     CGFloat scaleL = 1 - scaleR;//取反
     
     leftBtn.transform = CGAffineTransformMakeScale(scaleL * 0.3 + 1, scaleL * 0.3 + 1);
     rightBtn.transform = CGAffineTransformMakeScale(scaleR * 0.3 + 1, scaleR * 0.3 + 1);
+    
+    UIColor *rightColor = [UIColor colorWithRed:scaleR green:0 blue:0 alpha:1];
+    UIColor *leftColor = [UIColor colorWithRed:scaleL green:0 blue:0 alpha:1];
+    [rightBtn setTitleColor:rightColor forState:UIControlStateNormal];
+    [leftBtn setTitleColor:leftColor forState:UIControlStateNormal];
 }
 #pragma mark -
 
