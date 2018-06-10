@@ -16,6 +16,7 @@
 
 #define screenWidth [UIScreen mainScreen].bounds.size.width
 #define screenHeight [UIScreen mainScreen].bounds.size.height
+#define eva_StatusBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?44:20)
 @interface ViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, weak) UIScrollView *titleScrollView;
@@ -251,7 +252,8 @@
 
 - (void)setupScrollView {
     UIScrollView *titleScrollView = [[UIScrollView alloc] init];
-    CGFloat titleY = self.navigationController.navigationBarHidden ? 20 : 64;
+//    self.navigationController.navigationBarHidden ? 0 : 44;
+    CGFloat titleY = eva_StatusBarHeight + (self.navigationController.navigationBarHidden ? 0 : 44);
     titleScrollView.frame = CGRectMake(0, titleY, screenWidth, 44);
 //    titleScrollView.backgroundColor = [UIColor orangeColor];
 //    隐藏滚动条 禁用回弹
